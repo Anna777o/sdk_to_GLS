@@ -11,12 +11,11 @@ using namespace utility;
 using namespace web::http;
 using namespace web::http::client;
 using namespace web::json;
-
+//проверка работы авторизации
 int main() {
 	sdk sdk;
-	sdk2 sdk1;
 	std::wstring token;
-	sdk.login("ovdanna@mail.ru", "Rjkj,jr02")
+	sdk.login("test", "test")
 		.then([&token](value json) {
 		std::wstring js= json.serialize();		
 		for (int i = 17; i < js.size()-1; ++i)
@@ -29,12 +28,6 @@ int main() {
 		}
 		std::wcout << token << std::endl;
 		
-	})
-		.wait();
-
-	sdk1.get_by_id(token, 6514)
-		.then([](value json) {
-
 	})
 		.wait();
 
