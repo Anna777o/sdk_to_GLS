@@ -9,6 +9,7 @@ using namespace utility;
 using namespace web::http;
 using namespace web::http::client;
 using namespace web::json;
+//класс, отвечающий за получение информации о расчете
 class sdk2
 {
 private:
