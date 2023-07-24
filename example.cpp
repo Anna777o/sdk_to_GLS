@@ -104,7 +104,7 @@ int main() {
 	GLSystemSDK_1 sdk1;
 	std::map<std::string, value> mp;
 	mp.insert({ "data",42});
-	sdk.login("ovdanna@mail.ru", "Rjkj,jr02")
+	sdk.login("test", "test") //use your own login and password
 		.then([](value json) {
 		int j = json.serialize().size();
 		std::cout << json.serialize().size() <<std:: endl;
