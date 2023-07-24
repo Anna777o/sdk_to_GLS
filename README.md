@@ -16,10 +16,10 @@
   <p align="center">
     SDK to GLS
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong> »</strong></a>
+    
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"></a>
+    
   </p>
 </div>
 
