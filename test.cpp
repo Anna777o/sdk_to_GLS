@@ -5,30 +5,51 @@ using namespace utility;
 using namespace web::http;
 using namespace web::http::client;
 using namespace web::json;
-
-//тестирование calculation если не вводится ничего
-int main() {
-	GLSystemSDK sdk;
-	GLSystemSDK_1 sdk1;
-
+//output error 400
+void wrong_login_or_password(std::string log, std::string pas)
+{
+	sdk sdk;
+	std::wstring token;
 	sdk.login("test", "test")
+		.then([&token](value json) {
+		std::wstring js = json.serialize();
+		for (int i = 17; i < js.size() - 1; ++i)
+		{
+			if (js[i + 1] != wchar_t(',')) {
+				token = token + js[i];
+
+			}
+			else break;
+		}
+		std::wcout << token << std::endl;
+
+	}).wait();
+}
+//output error 404 
+void wrong_id() {
+	sdk sdk;
+	std::wstring token;
+	sdk.login("ovdanna@mail.ru", "Rjkj,jr02")
+		.then([&token](value json) {
+		std::wstring js = json.serialize();
+		for (int i = 17; i < js.size() - 1; ++i)
+		{
+			if (js[i + 1] != wchar_t(',')) {
+				token = token + js[i];
+
+			}
+			else break;
+		}
+		std::wcout << token << std::endl;
+
+	}).wait();
+	std::string url1 = "https://back.glsystem.net/api/v1/calculation/";
+	sdk2 sdk1(url1, "3099", token);
+	sdk1.get_by_id(token, 3099)
 		.then([](value json) {
-		int j = json.serialize().size();
-		for (int i = 0; i < j; ++i)
-			std::cout << json.serialize()[i];
-	})
-		.wait();
+		std::wstring js = json.serialize();
+		std::wcout << js << std::endl;
 
-	sdk1.create("c3a4d4cdf8b8258e7c196fc0019943c7fc63b532")
-		.then([](value json) {
+	}).wait();
 
-	})
-		.wait();
-	sdk1.get("324324343")
-		.then([](value json) {
-
-	})
-		.wait();
-
-	return 0;
 }
