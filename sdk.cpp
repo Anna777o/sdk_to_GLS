@@ -60,7 +60,7 @@ public:
 		payload[U("callback_url")] = value::string(utility::conversions::to_string_t(callback_url));
 		payload[U("external_api")] = value::boolean((external_api));
 		http_request request(methods::POST);
-		request.headers().add(U("Authorization: Bearer "),utility::conversions::to_string_t(token));
+		request.headers().add(utility::conversions::to_string_t("Authorization"), utility::conversions::to_string_t("Bearer " + token));
 		
 		request.set_body(payload);
 
@@ -88,7 +88,7 @@ public:
 		payload[U("project_id")] = value::number((project_id));
 		payload[U("status")] = value::string(utility::conversions::to_string_t(status));
 		http_request request(methods::GET);
-		request.headers().add(U("Authorization: Bearer "),utility::conversions::to_string_t (token));
+		request.headers().add(utility::conversions::to_string_t("Authorization"), utility::conversions::to_string_t("Bearer " + token));
 		request.set_body(payload);
 
 		return client.request(request)
