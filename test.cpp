@@ -29,7 +29,7 @@ void wrong_login_or_password(std::string log, std::string pas)
 void wrong_id() {
 	sdk sdk;
 	std::wstring token;
-	sdk.login("ovdanna@mail.ru", "Rjkj,jr02")
+	sdk.login("ovdanna@mail.ru", "test")
 		.then([&token](value json) {
 		std::wstring js = json.serialize();
 		for (int i = 17; i < js.size() - 1; ++i)
