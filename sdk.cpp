@@ -7,7 +7,7 @@ using namespace utility;
 using namespace web::http;
 using namespace web::http::client;
 using namespace web::json;
-
+//first class to login into API
 class GLSystemSDK {
 private:
 	http_client client;
@@ -15,6 +15,7 @@ private:
 public:
 	GLSystemSDK() : client(U("https://back.glsystem.net/api/v1/auth/login/")) {}
 	std::string access_token;
+	//login function that takes username and password as argumanents and returns token
 	pplx::task<value> login(const std::string& username, const std::string& password) {
 		value payload;
 		payload[U("username")] = value::string(utility::conversions::to_string_t(username));
@@ -38,12 +39,14 @@ public:
 	
 
 };
+//second class to work with calculation
 class GLSystemSDK_1 {
 private:
 	http_client client;
 
 public:
 	GLSystemSDK_1() : client(U("https://back.glsystem.net/api/v1/calculation")) {}
+	//function that creates new project
 	pplx::task<value> create(const std::string token, int project_id = 1, std::map<std::string, value> input_data = {}, std::string status="",
 		std::string callback_url="", bool external_api=false) {
 		value payload;
@@ -72,6 +75,7 @@ public:
 		});
 
 	}
+	//function that makes calculation
 	pplx::task<value> get(const std::string token, bool favorite=false, bool is_history=false, bool is_recalculate=false, std::string ordering="", int page=1,
 		int page_size=1, int project_id=0, std::string status="") {
 		value payload;
