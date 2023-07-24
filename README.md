@@ -15,10 +15,7 @@
 
   <p align="center">
     SDK to GLS
-    <br />
     
-    <br />
-    <br />
     
   </p>
 </div>
